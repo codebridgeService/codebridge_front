@@ -1,0 +1,87 @@
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Battambang:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --font-poppins: 'Poppins', sans-serif;
+  --font-battambang: 'Battambang', cursive;
+}
+
+.font-battambang {
+  font-family: var(--font-battambang);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+
+
+/* Custom CSS Variables for easier theme management */
+:root {
+  --color-primary: #1A2368; /* Codebridge Navy Blue */
+  --color-secondary: #378ADD; /* Codebridge Light Blue Accent */
+  
+  /* Theme Variables (Light Mode) */
+  --bg-main: #FFFFFF;
+  --bg-navbar: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --text-main: #2D3748;
+  --text-muted: #6B7280;
+  --border-main: #E2E8F0;
+  --navbar-text: #1A2368;
+}
+
+.dark {
+  /* Theme Variables (Dark Mode) */
+  --color-primary: #378ADD; /* Brighter Blue for Dark Mode */
+  --color-secondary: #60A5FA;
+  --bg-main: #1A2368;
+  --bg-navbar: #1A2368;
+  --bg-secondary: #222d7a;
+  --text-main: #FFFFFF;
+  --text-muted: #CBD5E0;
+  --border-main: #2d3bb1;
+  --navbar-text: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply bg-[color:var(--bg-main)] text-[color:var(--text-main)] font-sans transition-colors duration-300;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-[color:var(--text-main)];
+  }
+}
+
+/* Optional: Subtle scrollbar styling for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Light track */
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
