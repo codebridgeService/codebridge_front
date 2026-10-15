@@ -1,0 +1,190 @@
+/* Modern High-End Typography Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Battambang:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-khmer: 'Kantumruy Pro', 'Battambang', sans-serif;
+}
+
+:root {
+  /* Font Family Definitions */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-khmer: 'Kantumruy Pro', sans-serif;
+  
+  /* Fallbacks for existing class names */
+  --font-poppins: 'Inter', 'Poppins', sans-serif;
+  --font-battambang: 'Kantumruy Pro', 'Battambang', sans-serif;
+
+  /* Brand Palette (Aligned with CodeBridges Logo) */
+  --color-primary: #0050C3; /* Logo Sapphire Blue */
+  --color-secondary: #0088FE; /* Logo Electric Azure Blue */
+  --color-brand: #0088FE; /* Logo Brand Highlight */
+
+  /* Text Color Tokens (Crisp, High-Contrast Enterprise Hierarchy) */
+  --text-primary: #0F172A; /* Slate 900 - High-contrast titles, headers, tabular values */
+  --text-secondary: #334155; /* Slate 700 - Body copy, descriptions, table rows */
+  --text-muted: #64748B; /* Slate 500 - Secondary labels, timestamps, meta pills */
+  --text-subtle: #94A3B8; /* Slate 400 - De-emphasized borders, subtle icons */
+
+  /* Light Theme Variables */
+  --bg-main: #FFFFFF;
+  --bg-navbar: #FFFFFF;
+  --bg-secondary: #F8FAFC;
+  --text-main: #0F172A;
+  --border-main: #E2E8F0;
+  --navbar-text: #0F172A;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-jakarta {
+  font-family: var(--font-jakarta);
+}
+
+.font-khmer {
+  font-family: var(--font-khmer);
+}
+
+.font-battambang {
+  font-family: var(--font-battambang);
+}
+
+.font-poppins {
+  font-family: var(--font-poppins);
+}
+
+/* Universal Brand Gradient Text Utility for all Blue Highlights */
+.text-gradient-brand,
+.gradient-text-blue {
+  background-image: linear-gradient(135deg, #0050C3 0%, #0088FE 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.text-gradient-subtle {
+  background-image: linear-gradient(135deg, #0050C3 0%, #38BDF8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.dark {
+  /* Dark Theme Variables */
+  --color-primary: #0088FE;
+  --color-secondary: #38BDF8;
+  --bg-main: #0B132B;
+  --bg-navbar: #0B132B;
+  --bg-secondary: #131F3F;
+  --text-main: #F8FAFC;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
+  --border-main: #1E293B;
+  --navbar-text: #F8FAFC;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  letter-spacing: -0.011em;
+  transition-property: color, background-color, border-color;
+  transition-duration: 300ms;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+}
+
+/* Optional: Subtle scrollbar styling for light theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f0f0f0; /* Light track */
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+/* Tech Background Floating & Breathing Animations */
+@keyframes techFloat1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(25px, -35px) scale(1.06);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.96);
+  }
+}
+
+@keyframes techFloat2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-30px, 30px) scale(0.94);
+  }
+  66% {
+    transform: translate(20px, -25px) scale(1.05);
+  }
+}
+
+.animate-tech-float-1 {
+  animation: techFloat1 18s ease-in-out infinite;
+}
+
+.animate-tech-float-2 {
+  animation: techFloat2 22s ease-in-out infinite;
+}
