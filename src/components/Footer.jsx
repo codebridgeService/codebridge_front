@@ -47,34 +47,32 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[color:var(--bg-main)] relative text-[color:var(--text-main)] pt-16 pb-8 overflow-hidden border-t border-[color:var(--border-main)] transition-colors duration-500">
-      {/* Background Decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-[color:var(--border-main)] to-transparent" />
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-[color:var(--color-primary)]/5 rounded-full blur-3xl" />
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[color:var(--color-secondary)]/5 rounded-full blur-3xl" />
+    <footer className="bg-transparent relative text-[color:var(--text-main)] pt-8 pb-5 overflow-hidden border-t border-[color:var(--border-main)]/40 transition-colors duration-500">
+      {/* Background Accent Line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-[color:var(--border-main)]/70 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-4">
           
           {/* Brand Section */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-3 group mb-6">
+          <div className="lg:col-span-4 flex flex-col gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5 group mb-1">
               <img 
                 src="/logo/Codebridge.svg" 
                 alt="Codebridge Logo" 
-                className="w-12 h-12 sm:w-14 sm:h-14 object-contain shrink-0 group-hover:scale-105 transition-transform duration-300"
+                className="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0 group-hover:scale-105 transition-transform duration-300"
               />
-              <span className={`text-2xl font-black tracking-tight transition-colors duration-300 ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
+              <span className={`text-xl font-black tracking-tight transition-colors duration-300 ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}>
                 Code<span className="bg-gradient-to-r from-[#0050C3] to-[#0088FE] bg-clip-text text-transparent">Bridges</span>
               </span>
             </Link>
-            <p className={`text-[color:var(--text-muted)] leading-relaxed max-w-sm ${lang === 'kh' ? 'text-base' : 'text-sm'}`}>
+            <p className="text-[color:var(--text-muted)] leading-relaxed max-w-xs text-xs">
               {t(
                 'Empowering businesses through cutting-edge technology and innovative digital experiences. We bridge the gap between ideas and reality.',
                 'ពង្រឹងអាជីវកម្មតាមរយៈបច្ចេកវិទ្យាទំនើប និងបទពិសោធន៍ឌីជីថលប្រកបដោយភាពចៃប្រឌិត។ យើងភ្ជាប់គម្លាតរវាងគំនិត និងការពិត។'
               )}
             </p>
-            <div className="flex gap-3 mt-1">
+            <div className="flex gap-2 mt-1">
               {[
                 { Icon: FaFacebookF, url: settings?.facebookUrl || "https://www.facebook.com/profile.php?id=61563715387398", color: "text-[#1877F2]", hoverBg: "hover:bg-[#1877F2]/10" },
                 { Icon: FaTiktok, url: settings?.tiktokUrl || "https://www.tiktok.com/@code.bridge2026", color: theme === 'dark' ? "text-white" : "text-[#000000]", hoverBg: "hover:bg-white/10" },
@@ -86,26 +84,26 @@ export default function Footer() {
                   href={social.url} 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-10 h-10 rounded-xl bg-[color:var(--bg-navbar)] flex items-center justify-center transition-all duration-300 shadow-sm border border-[color:var(--border-main)] ${social.color} ${social.hoverBg} hover:scale-110 active:scale-95`}
+                  className={`w-8 h-8 rounded-lg bg-[color:var(--bg-secondary)]/50 hover:bg-[color:var(--text-main)]/10 flex items-center justify-center transition-all duration-300 shadow-sm border border-[color:var(--border-main)]/60 ${social.color} ${social.hoverBg} hover:scale-105 active:scale-95`}
                 >
-                  <social.Icon className="h-5 w-5" />
+                  <social.Icon className="h-3.5 w-3.5" />
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Links Sections */}
-          <div className="lg:col-span-1" /> {/* Spacer */}
+          <div className="hidden lg:block lg:col-span-1" /> {/* Spacer */}
           
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className={`font-bold uppercase tracking-widest text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
+          <div className="lg:col-span-2 space-y-2.5">
+            <h3 className={`font-bold uppercase tracking-wider text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-xs' : 'text-[11px]'}`}>
               {t('Company', 'ក្រុមហ៊ុន')}
             </h3>
-            <ul className={`flex flex-col gap-2 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-base' : 'text-sm'}`}>
+            <ul className={`flex flex-col gap-1.5 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link href={getEncryptedHref(link.href)} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
-                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-2" /></span>
+                    <span className="w-0 group-hover:w-2.5 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-1.5" /></span>
                     {link.name}
                   </Link>
                 </li>
@@ -113,15 +111,15 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2 space-y-4">
-            <h3 className={`font-bold uppercase tracking-widest text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
+          <div className="lg:col-span-2 space-y-2.5">
+            <h3 className={`font-bold uppercase tracking-wider text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-xs' : 'text-[11px]'}`}>
               {t('Services', 'សេវាកម្ម')}
             </h3>
-            <ul className={`flex flex-col gap-2 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-base' : 'text-sm'}`}>
+            <ul className={`flex flex-col gap-1.5 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link href={getEncryptedHref(link.href)} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
-                    <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-2" /></span>
+                    <span className="w-0 group-hover:w-2.5 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-1.5" /></span>
                     {link.name}
                   </Link>
                 </li>
@@ -129,25 +127,25 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-4">
-            <h3 className={`font-bold uppercase tracking-widest text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
+          <div className="lg:col-span-3 space-y-2.5">
+            <h3 className={`font-bold uppercase tracking-wider text-[color:var(--text-muted)] opacity-70 ${lang === 'kh' ? 'text-xs' : 'text-[11px]'}`}>
               {t('Newsletter', 'ព្រឹត្តិប័ត្រព័ត៌មាន')}
             </h3>
-            <p className={`text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-sm' : 'text-xs'}`}>
+            <p className={`text-[color:var(--text-muted)] text-xs`}>
               {t('Stay ahead with the latest in tech.', 'បន្តឈានមុខគេជាមួយនឹងបច្ចេកវិទ្យាចុងក្រោយបំផុត។')}
             </p>
             <form className="relative group max-w-xs">
               <input
                 type="email"
                 placeholder={t('Email Address', 'អាសយដ្ឋានអ៊ីមែល')}
-                className="w-full bg-[color:var(--bg-navbar)] border border-[color:var(--border-main)] rounded-xl py-3 px-4 text-sm focus:ring-2 focus:ring-[color:var(--color-primary)] focus:bg-[color:var(--bg-main)] transition-all outline-none text-[color:var(--text-main)]"
+                className="w-full bg-[color:var(--bg-secondary)]/50 border border-[color:var(--border-main)]/70 rounded-lg py-2 px-3 text-xs focus:ring-1 focus:ring-[color:var(--color-primary)] transition-all outline-none text-[color:var(--text-main)]"
               />
               <button 
                 type="submit" 
-                className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-[color:var(--color-primary)] text-white rounded-lg hover:bg-[color:var(--color-secondary)] transition-colors"
+                className="absolute right-1 top-1 bottom-1 px-2.5 bg-[color:var(--color-primary)] text-white rounded-md hover:bg-[color:var(--color-secondary)] transition-colors text-xs flex items-center justify-center"
                 aria-label="Subscribe"
               >
-                <FaArrowRight className="h-3 w-3" />
+                <FaArrowRight className="h-2.5 w-2.5" />
               </button>
             </form>
           </div>
@@ -155,13 +153,13 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-[color:var(--border-main)] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[color:var(--text-muted)] text-xs opacity-60">
+        <div className="mt-8 pt-4 border-t border-[color:var(--border-main)]/40 flex flex-col md:flex-row justify-between items-center gap-3">
+          <p className="text-[color:var(--text-muted)] text-[11px] opacity-70">
             &copy; {year} CodeBridges. {t('All rights reserved.', 'រក្សាសិទ្ធិគ្រប់យ៉ាង។')}
           </p>
-          <div className="flex gap-6">
+          <div className="flex gap-4">
             {footerLinks.legal.map((link) => (
-              <Link key={link.name} href={link.href} className="text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] text-xs transition-colors">
+              <Link key={link.name} href={link.href} className="text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] text-[11px] transition-colors">
                 {link.name}
               </Link>
             ))}
