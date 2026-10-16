@@ -10,7 +10,7 @@ export default function ProjectCard({ project }) {
 
   return (
     <motion.div
-      onClick={() => router.push(`/portfolio/${project.id}`)}
+      onClick={() => router.push(`/portfolio/${project.encryptedId || project.id}`)}
       className="bg-[color:var(--bg-secondary)] rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 border border-[color:var(--border-main)] flex flex-col h-full group cursor-pointer"
       whileHover={{ y: -6 }}
     >
