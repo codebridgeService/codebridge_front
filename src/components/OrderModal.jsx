@@ -72,14 +72,14 @@ export default function OrderModal({ pkg, onClose }) {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-lg bg-[color:var(--bg-navbar)] rounded-[2rem] shadow-2xl border border-[color:var(--border-main)] overflow-hidden"
+          className="relative w-full max-w-md bg-[color:var(--bg-navbar)] rounded-2xl shadow-2xl border border-[color:var(--border-main)] overflow-hidden"
         >
           {/* Close button */}
           <button 
             onClick={onClose}
-            className="absolute top-6 right-6 p-2 rounded-full hover:bg-[color:var(--text-main)]/10 transition-colors z-10"
+            className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-[color:var(--text-main)]/10 transition-colors z-10"
           >
-            <XMarkIcon className="w-5 h-5 text-[color:var(--text-main)]" />
+            <XMarkIcon className="w-4 h-4 text-[color:var(--text-main)]" />
           </button>
 
           {/* Progress Bar */}
@@ -94,7 +94,7 @@ export default function OrderModal({ pkg, onClose }) {
             </div>
           )}
 
-          <div className="p-8 sm:p-10">
+          <div className="p-5 sm:p-6">
             <AnimatePresence mode="wait">
               {step === 1 && (
                 <motion.div 
@@ -102,11 +102,11 @@ export default function OrderModal({ pkg, onClose }) {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="flex flex-col gap-5"
+                  className="flex flex-col gap-4"
                 >
                   <div>
-                    <h2 className="text-2xl font-black text-[color:var(--text-main)] mb-1.5">Great choice!</h2>
-                    <p className="text-[color:var(--text-muted)] text-base">
+                    <h2 className="text-lg font-black text-[color:var(--text-main)] mb-1">Great choice!</h2>
+                    <p className="text-[color:var(--text-muted)] text-xs sm:text-sm">
                       You're choosing the <strong className="text-[color:var(--color-primary)]">{pkg.name}</strong>. Let's get started—what's your name?
                     </p>
                   </div>
@@ -116,16 +116,16 @@ export default function OrderModal({ pkg, onClose }) {
                     placeholder="Your Full Name" 
                     value={formData.name}
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
-                    className="w-full px-5 py-3.5 rounded-2xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-base text-[color:var(--text-main)]"
+                    className="w-full px-4 py-2.5 rounded-xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-xs sm:text-sm text-[color:var(--text-main)]"
                     autoFocus
                   />
 
                   <button 
                     onClick={handleNext}
                     disabled={!formData.name}
-                    className="mt-2 w-full py-3.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="mt-1 w-full py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-xs sm:text-sm"
                   >
-                    Next <ArrowRightIcon className="w-4 h-4 stroke-2" />
+                    Next <ArrowRightIcon className="w-3.5 h-3.5 stroke-2" />
                   </button>
                 </motion.div>
               )}
@@ -136,52 +136,52 @@ export default function OrderModal({ pkg, onClose }) {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  className="flex flex-col gap-5"
+                  className="flex flex-col gap-4"
                 >
                   <div>
-                    <h2 className="text-2xl font-black text-[color:var(--text-main)] mb-1.5">Nice to meet you, {formData.name.split(' ')[0]}!</h2>
-                    <p className="text-[color:var(--text-muted)] text-base">
+                    <h2 className="text-lg font-black text-[color:var(--text-main)] mb-1">Nice to meet you, {formData.name.split(' ')[0]}!</h2>
+                    <p className="text-[color:var(--text-muted)] text-xs sm:text-sm">
                       How can we reach you, and do you have any quick notes about your project?
                     </p>
                   </div>
                   
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2.5">
                     <input 
                       type="email" 
                       placeholder="Your Email Address" 
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      className="w-full px-5 py-3.5 rounded-2xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-base text-[color:var(--text-main)]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-xs sm:text-sm text-[color:var(--text-main)]"
                       autoFocus
                     />
                     <textarea 
                       placeholder="Project details (optional)" 
                       value={formData.details}
                       onChange={(e) => setFormData({...formData, details: e.target.value})}
-                      className="w-full px-5 py-3.5 rounded-2xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-base resize-none h-28 text-[color:var(--text-main)]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-[color:var(--bg-main)] border border-[color:var(--border-main)] focus:border-[color:var(--color-primary)] focus:ring-2 focus:ring-[color:var(--color-primary)]/20 outline-none transition-all text-xs sm:text-sm resize-none h-20 text-[color:var(--text-main)]"
                     />
                   </div>
 
                   {submitError && (
-                    <div className="p-3 text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl text-center">
+                    <div className="p-2.5 text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl text-center">
                       {submitError}
                     </div>
                   )}
 
-                  <div className="flex gap-3 mt-2">
+                  <div className="flex gap-2.5 mt-1">
                     <button 
                       onClick={handleBack}
                       disabled={isSubmitting}
-                      className="px-5 py-3.5 rounded-2xl font-bold text-[color:var(--text-muted)] hover:bg-[color:var(--bg-main)] transition-all text-sm disabled:opacity-50"
+                      className="px-4 py-2.5 rounded-xl font-bold text-[color:var(--text-muted)] hover:bg-[color:var(--bg-main)] transition-all text-xs disabled:opacity-50"
                     >
                       Back
                     </button>
                     <button 
                       onClick={handleNext}
                       disabled={!formData.email || isSubmitting}
-                      className="flex-1 py-3.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="flex-1 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-xl shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-xs sm:text-sm"
                     >
-                      {isSubmitting ? 'Submitting...' : 'Complete Request'} <CheckCircleIcon className="w-5 h-5" />
+                      {isSubmitting ? 'Submitting...' : 'Complete Request'} <CheckCircleIcon className="w-4 h-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -192,21 +192,21 @@ export default function OrderModal({ pkg, onClose }) {
                   key="step3"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center text-center gap-5 py-6"
+                  className="flex flex-col items-center text-center gap-4 py-4"
                 >
-                  <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 mb-1">
-                    <CheckCircleIcon className="w-10 h-10" />
+                  <div className="w-14 h-14 bg-green-500/10 rounded-full flex items-center justify-center text-green-500 mb-1">
+                    <CheckCircleIcon className="w-7 h-7" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-black text-[color:var(--text-main)] mb-2">You're all set!</h2>
-                    <p className="text-[color:var(--text-muted)] text-base leading-relaxed">
+                    <h2 className="text-lg font-black text-[color:var(--text-main)] mb-1">You're all set!</h2>
+                    <p className="text-[color:var(--text-muted)] text-xs sm:text-sm leading-relaxed">
                       Thanks for reaching out, {formData.name.split(' ')[0]}. We've received your request for the <strong className="text-[color:var(--color-primary)]">{pkg.name}</strong> and will be in touch shortly.
                     </p>
                   </div>
                   
                   <button 
                     onClick={onClose}
-                    className="mt-4 px-8 py-3.5 bg-[color:var(--bg-main)] text-[color:var(--text-main)] font-bold rounded-2xl shadow-sm hover:shadow-md border border-[color:var(--border-main)] transition-all text-sm"
+                    className="mt-2 px-6 py-2 bg-[color:var(--bg-main)] text-[color:var(--text-main)] font-bold rounded-xl shadow-sm hover:shadow-md border border-[color:var(--border-main)] transition-all text-xs"
                   >
                     Close
                   </button>

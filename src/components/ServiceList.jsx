@@ -44,26 +44,40 @@ export default function ServiceList({ limit, exclude }) {
     const d = description.toLowerCase();
     
     if (t.includes('web') || d.includes('web')) return { 
+      slug: 'web-development',
       color: '#3B82F6', 
-      tags: ['Next.js', 'Laravel'],
+      tags: ['Next.js 15', 'Node.js', 'PostgreSQL'],
+      metric: 'High-Speed Web',
       icon: 'GlobeAltIcon'
     };
     if (t.includes('mobile') || d.includes('app') || t.includes('phone')) return { 
+      slug: 'mobile-apps',
       color: '#FACC15', 
-      tags: ['Android', 'iOS'],
+      tags: ['Flutter', 'React Native', 'iOS & Android'],
+      metric: 'Cross-Platform',
       icon: 'DevicePhoneMobileIcon'
     };
     if (t.includes('design') || t.includes('ui/ux') || t.includes('ui') || t.includes('ux')) return { 
+      slug: 'ui-ux-design',
       color: '#A855F7', 
-      tags: ['Figma', 'Adobe XD'],
+      tags: ['Figma', 'Design Systems', 'Micro-Interactions'],
+      metric: 'Modern UI/UX',
       icon: 'PaintBrushIcon'
     };
-    if (t.includes('system') || t.includes('pos') || d.includes('pos') || t.includes('soft')) return { 
+    if (t.includes('system') || t.includes('pos') || d.includes('pos') || t.includes('soft') || t.includes('erp')) return { 
+      slug: 'custom-systems',
       color: '#22C55E', 
-      tags: ['POS', 'ERP'],
-      icon: 'Squares2X2Icon'
+      tags: ['Custom ERP', 'PostgreSQL', 'Real-Time Sync'],
+      metric: 'Enterprise Scale',
+      icon: 'ServerStackIcon'
     };
-    return { color: '#1A2368', tags: [], icon: 'CodeBracketSquareIcon' };
+    return { 
+      slug: 'custom-systems',
+      color: '#0050C3', 
+      tags: ['Cloud Architecture', 'CI/CD', 'Security'], 
+      metric: 'Production-Ready',
+      icon: 'CodeBracketSquareIcon' 
+    };
   };
 
   const filteredServices = exclude 
@@ -82,9 +96,9 @@ export default function ServiceList({ limit, exclude }) {
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
         {Array(limit || 3).fill(null).map((_, i) => (
-          <div key={`sk-svc-${i}`} className="w-full h-64 bg-[color:var(--bg-navbar)] rounded-2xl animate-pulse border border-[color:var(--border-main)]" />
+          <div key={`sk-svc-${i}`} className="w-full h-48 bg-transparent rounded-2xl animate-pulse border border-[color:var(--border-main)]/60" />
         ))}
       </div>
     );
@@ -93,8 +107,8 @@ export default function ServiceList({ limit, exclude }) {
   return (
     <motion.div
       className={displayServices.length === 2 
-        ? "flex flex-col md:flex-row justify-center items-stretch gap-8 max-w-4xl mx-auto" 
-        : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"}
+        ? "flex flex-col md:flex-row justify-center items-stretch gap-5 sm:gap-6 max-w-4xl mx-auto" 
+        : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"}
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -116,6 +130,9 @@ export default function ServiceList({ limit, exclude }) {
               description={description} 
               icon={service.icon || extras.icon}
               color={service.color && service.color !== "" ? service.color : extras.color}
+              tags={service.tags && Array.isArray(service.tags) && service.tags.length > 0 ? service.tags : extras.tags}
+              metric={extras.metric}
+              slug={service.slug || extras.slug}
             />
           </motion.div>
         );

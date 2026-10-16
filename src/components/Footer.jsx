@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaFacebookF, FaTiktok, FaTelegramPlane, FaArrowRight, FaInstagram } from 'react-icons/fa';
+import { ServerStackIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
 
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -32,12 +33,13 @@ export default function Footer() {
     company: [
       { name: t('About Us', 'អំពីយើង'), href: '/about' },
       { name: t('Our Team', 'ក្រុមរបស់យើង'), href: '/about#team' },
+      { name: t('Documentation', 'ឯកសារបច្ចេកទេស'), href: '/docs' },
       { name: t('Contact Us', 'ទំនាក់ទំនង'), href: '/contact' },
     ],
     services: [
-      { name: t('Web Development', 'ការអភិវឌ្ឍន៍គេហទំព័រ'), href: '/services#web-development' },
-      { name: t('Mobile Apps', 'កម្មវិធីទូរស័ព្ទ'), href: '/services#mobile-apps' },
-      { name: t('Custom Systems', 'ប្រព័ន្ធតាមតម្រូវការ'), href: '/services#custom-systems' },
+      { name: t('Web Development', 'ការអភិវឌ្ឍន៍គេហទំព័រ'), href: '/services/web-development' },
+      { name: t('Mobile Apps', 'កម្មវិធីទូរស័ព្ទ'), href: '/services/mobile-apps' },
+      { name: t('Custom Systems', 'ប្រព័ន្ធតាមតម្រូវការ'), href: '/services/custom-systems' },
     ],
     legal: [
       { name: t('Privacy Policy', 'គោលការណ៍ឯកជនភាព'), href: '/privacy' },
@@ -152,8 +154,34 @@ export default function Footer() {
 
         </div>
 
+        {/* Cloud Infrastructure Telemetry Bar */}
+        <div className="mt-8 pt-4 pb-2 border-t border-[color:var(--border-main)]/40 flex flex-wrap items-center justify-between gap-3 text-[10px] font-mono text-[color:var(--text-muted)]">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span className="font-bold text-[color:var(--text-main)]">
+              {t("ALL SYSTEMS OPERATIONAL", "ប្រព័ន្ធទាំងអស់ដំណើរការជាធម្មតា")}
+            </span>
+            <span className="opacity-40">•</span>
+            <span>{t("Cluster ap-southeast-1", "កន្សោមពពក ap-southeast-1")}</span>
+          </div>
+
+          <div className="flex items-center gap-4 text-[9px] uppercase tracking-wider">
+            <span className="flex items-center gap-1.5">
+              <ServerStackIcon className="w-3.5 h-3.5 text-[color:var(--color-primary)] shrink-0" />
+              <span>Edge Cloud Network</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <ShieldCheckIcon className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <span>TLS 1.3 Certified</span>
+            </span>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="mt-8 pt-4 border-t border-[color:var(--border-main)]/40 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="pt-2 border-t border-[color:var(--border-main)]/20 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[color:var(--text-muted)] text-[11px] opacity-70">
             &copy; {year} CodeBridges. {t('All rights reserved.', 'រក្សាសិទ្ធិគ្រប់យ៉ាង។')}
           </p>

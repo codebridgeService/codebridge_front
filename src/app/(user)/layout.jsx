@@ -7,7 +7,7 @@ export default function UserLayout({ children }) {
   return (
     <>
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-14 sm:pt-16">
         {children}
       </main>
       <Footer />

@@ -10,6 +10,7 @@ const ENCRYPTED_TARGETS = [
   '/faq',
   '/packages',
   '/order',
+  '/docs',
 ];
 
 export function middleware(request) {

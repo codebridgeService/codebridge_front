@@ -6,7 +6,7 @@ export async function sendTelegramMessage({ name, email, message }) {
       throw new Error("Telegram bot token or chat ID not set");
     }
   
-    const text = `📩 *New Contact Form Message*\n\n*Name:* ${name}\n*Email:* ${email}\n*Message:*\n${message}`;
+    const text = `*New Contact Form Message*\n\n*Name:* ${name}\n*Email:* ${email}\n*Message:*\n${message}`;
   
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
   

@@ -65,64 +65,64 @@ export default function AboutPage() {
 
   return (
     <motion.section
-      className="max-w-6xl mx-auto px-6 py-16 relative z-10"
+      className="max-w-6xl mx-auto px-6 py-10 relative z-10"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <motion.h1 
-        className="text-4xl sm:text-5xl font-black text-[color:var(--text-main)] mb-6 text-center tracking-tight"
+        className="text-2xl sm:text-3xl font-black text-[color:var(--text-main)] mb-3 text-center tracking-tight"
         variants={itemVariants}
       >
         {t("About", "អំពី")} <span className="text-[color:var(--text-main)]">Code</span><span className="bg-gradient-to-r from-[#0050C3] to-[#0088FE] bg-clip-text text-transparent">Bridges</span>
       </motion.h1>
 
       <motion.p 
-        className="mt-6 text-base sm:text-lg text-[color:var(--text-muted)] leading-relaxed text-center max-w-3xl mx-auto"
+        className="mt-3 text-xs sm:text-sm text-[color:var(--text-muted)] leading-relaxed text-center max-w-2xl mx-auto"
         variants={itemVariants}
       >
         {storyText}
       </motion.p>
 
       {/* Grid for Mission, Vision, and Goals */}
-      <div className="grid lg:grid-cols-2 gap-8 mt-16">
+      <div className="grid lg:grid-cols-2 gap-5 mt-10">
         
         {/* Left Column: Mission & Vision */}
-        <div className="flex flex-col gap-8">
-          <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-8 rounded-3xl shadow-sm border border-[color:var(--border-main)]" variants={itemVariants}>
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-[color:var(--text-main)] mb-4">
-              <BriefcaseIcon className="h-7 w-7 text-[color:var(--color-primary)]" /> {missionTitle}
+        <div className="flex flex-col gap-5">
+          <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-[color:var(--border-main)]" variants={itemVariants}>
+            <h3 className="flex items-center gap-2.5 text-lg font-bold text-[color:var(--text-main)] mb-2">
+              <BriefcaseIcon className="h-5 w-5 text-[color:var(--color-primary)]" /> {missionTitle}
             </h3>
-            <p className="text-base sm:text-lg text-[color:var(--text-muted)] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[color:var(--text-muted)] leading-relaxed">
               {missionText}
             </p>
           </motion.div>
 
-          <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-8 rounded-3xl shadow-sm border border-[color:var(--border-main)]" variants={itemVariants}>
-            <h3 className="flex items-center gap-3 text-2xl font-bold text-[color:var(--text-main)] mb-4">
-              <EyeIcon className="h-7 w-7 text-[color:var(--color-primary)]" /> {visionTitle}
+          <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-[color:var(--border-main)]" variants={itemVariants}>
+            <h3 className="flex items-center gap-2.5 text-lg font-bold text-[color:var(--text-main)] mb-2">
+              <EyeIcon className="h-5 w-5 text-[color:var(--color-primary)]" /> {visionTitle}
             </h3>
-            <p className="text-base sm:text-lg text-[color:var(--text-muted)] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[color:var(--text-muted)] leading-relaxed">
               {visionText}
             </p>
           </motion.div>
         </div>
 
         {/* Right Column: Strategic Commitments */}
-        <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-8 rounded-3xl shadow-sm border border-[color:var(--border-main)] flex flex-col justify-center h-full" variants={itemVariants}>
-          <h3 className="flex items-center gap-3 text-2xl font-bold text-[color:var(--text-main)] mb-6">
-            <FlagIcon className="h-7 w-7 text-[color:var(--color-primary)]" /> {t("Our Strategic Goals", "គោលដៅយុទ្ធសាស្ត្ររបស់យើង")}
+        <motion.div className="bg-[color:var(--bg-main)]/80 backdrop-blur-sm p-5 sm:p-6 rounded-2xl shadow-sm border border-[color:var(--border-main)] flex flex-col justify-center h-full" variants={itemVariants}>
+          <h3 className="flex items-center gap-2.5 text-lg font-bold text-[color:var(--text-main)] mb-4">
+            <FlagIcon className="h-5 w-5 text-[color:var(--color-primary)]" /> {t("Our Strategic Goals", "គោលដៅយុទ្ធសាស្ត្ររបស់យើង")}
           </h3>
-          <ul className="space-y-4">
+          <ul className="space-y-2.5">
             {[
               { en: "Deliver high-speed, enterprise-grade software for every client", kh: "ផ្តល់ជូននូវសូហ្វវែរដែលមានល្បឿនលឿនកម្រិតសហគ្រាសសម្រាប់គ្រប់អតិថិជន" },
               { en: "Serve startups, SMEs, and international enterprises", kh: "បម្រើអាជីវកម្មថ្មីថ្មោង សហគ្រាសធុនតូច និងមធ្យម និងអន្តរជាតិ" },
               { en: "Maintain 100% transparent communication and delivery sprints", kh: "រក្សាការទំនាក់ទំនងប្រកបដោយតម្លាភាព ១០០% និងការផ្តល់ជូនទាន់ពេលវេលា" },
               { en: "Pioneer modern web and mobile tech in Southeast Asia", kh: "ត្រួសត្រាយបច្ចេកវិទ្យាគេហទំព័រ និងទូរស័ព្ទទំនើបនៅអាស៊ីអាគ្នេយ៍" }
             ].map((goal, i) => (
-              <li key={i} className="flex items-start gap-4 group">
-                <div className="mt-2.5 shrink-0 w-2 h-2 rounded-full bg-[color:var(--color-secondary)] group-hover:scale-150 group-hover:bg-[color:var(--color-primary)] transition-all" />
-                <span className="text-base sm:text-lg text-[color:var(--text-muted)] leading-relaxed group-hover:text-[color:var(--text-main)] transition-colors">{t(goal.en, goal.kh)}</span>
+              <li key={i} className="flex items-start gap-3 group">
+                <div className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-[color:var(--color-secondary)] group-hover:scale-150 group-hover:bg-[color:var(--color-primary)] transition-all" />
+                <span className="text-xs sm:text-sm text-[color:var(--text-muted)] leading-relaxed group-hover:text-[color:var(--text-main)] transition-colors">{t(goal.en, goal.kh)}</span>
               </li>
             ))}
           </ul>

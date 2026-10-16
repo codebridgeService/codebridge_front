@@ -20,6 +20,7 @@ const navItems = [
   // { name: 'Services', kh: 'សេវាកម្ម', href: '/services' },
   { name: 'Portfolio', kh: 'ស្នាដៃ', href: '/portfolio' },
   { name: 'About', kh: 'អំពីយើង', href: '/about' },
+  { name: 'Docs', kh: 'ឯកសារបច្ចេកទេស', href: '/docs' },
   { name: 'FAQ', kh: 'សំណួរញឹកញាប់', href: '/faq' },
   { name: 'Contact', kh: 'ទំនាក់ទំនង', href: '/contact' },
 ];
@@ -58,26 +59,26 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[color:var(--bg-navbar)]/85 backdrop-blur-md shadow-sm py-3 border-b border-[color:var(--border-main)]/50' 
-          : 'bg-[color:var(--bg-navbar)]/75 backdrop-blur-sm py-4'
+          ? 'bg-[color:var(--bg-navbar)]/85 backdrop-blur-md shadow-sm py-2 border-b border-[color:var(--border-main)]/50' 
+          : 'bg-[color:var(--bg-navbar)]/75 backdrop-blur-sm py-2.5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Logo and Name */}
-        <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+        <Link href="/" className="flex items-center gap-2 group shrink-0">
           <img 
             src="/logo/Codebridge.svg" 
             alt="Codebridge Logo" 
-            className="w-10 h-10 sm:w-11 sm:h-11 object-contain shrink-0 group-hover:scale-105 transition-transform duration-300"
+            className="w-8 h-8 sm:w-9 sm:h-9 object-contain shrink-0 group-hover:scale-105 transition-transform duration-300"
           />
-          <span className="text-lg sm:text-xl font-black text-[color:var(--navbar-text)] tracking-tight font-sans">
+          <span className="text-base sm:text-lg font-black text-[color:var(--navbar-text)] tracking-tight font-sans">
             Code<span className="bg-gradient-to-r from-[#0050C3] to-[#0088FE] bg-clip-text text-transparent">Bridges</span>
           </span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-4">
-          <div className="flex items-center gap-1">
+        <div className="hidden md:flex items-center gap-3">
+          <div className="flex items-center gap-0.5">
             {navItems.map((item) => {
               const isActive = resolvedPathname === item.href || (resolvedPathname?.startsWith(item.href) && item.href !== '/');
               const targetHref = getEncryptedHref(item.href);
@@ -85,7 +86,7 @@ export default function Navbar() {
                 <Link 
                   key={item.name} 
                   href={targetHref}
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all relative group ${lang === 'kh' ? 'text-base' : ''} ${
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-full transition-all relative group ${lang === 'kh' ? 'text-sm' : ''} ${
                     isActive 
                       ? 'text-[color:var(--navbar-text)] bg-[color:var(--navbar-text)]/10'
                       : 'text-[color:var(--navbar-text)] opacity-70 hover:opacity-100 hover:bg-[color:var(--navbar-text)]/10'
@@ -93,7 +94,7 @@ export default function Navbar() {
                 >
                   {t(item.name, item.kh)}
                   <motion.span 
-                    className={`absolute bottom-1 left-4 right-4 h-0.5 bg-[#378ADD] transition-transform origin-center ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
+                    className={`absolute bottom-1 left-3 right-3 h-0.5 bg-[#378ADD] transition-transform origin-center ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`}
                     initial={false}
                   />
                 </Link>
@@ -104,17 +105,17 @@ export default function Navbar() {
           {user?.role === 'admin' && (
             <Link 
               href="/admin" 
-              className="px-4 py-2 text-xs font-black text-white bg-[#0050C3] hover:bg-[#003da0] rounded-full transition-all uppercase tracking-widest shadow-sm"
+              className="px-3 py-1.5 text-[10px] font-black text-white bg-[#0050C3] hover:bg-[#003da0] rounded-full transition-all uppercase tracking-widest shadow-sm"
             >
               Admin
             </Link>
           )}
 
           {/* Language Switcher */}
-          <div className="flex items-center bg-white/5 p-1 rounded-full border border-white/10 shadow-lg backdrop-blur-sm">
+          <div className="flex items-center bg-white/5 p-0.5 rounded-full border border-white/10 shadow-lg backdrop-blur-sm">
             <button
               onClick={() => setLang('en')}
-              className={`px-3 py-1 rounded-full text-xs font-black transition-all ${
+              className={`px-2.5 py-1 rounded-full text-[11px] font-black transition-all ${
                 lang === 'en' 
                   ? 'bg-[color:var(--navbar-text)] text-[color:var(--bg-navbar)] shadow-md scale-105' 
                   : 'text-[color:var(--navbar-text)] opacity-40 hover:opacity-80'
@@ -124,7 +125,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setLang('kh')}
-              className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${
+              className={`px-2.5 py-1 rounded-full text-[11px] font-bold transition-all ${
                 lang === 'kh' 
                   ? 'bg-[color:var(--navbar-text)] text-[color:var(--bg-navbar)] shadow-md scale-105' 
                   : 'text-[color:var(--navbar-text)] opacity-40 hover:opacity-80 font-bold'
@@ -137,14 +138,14 @@ export default function Navbar() {
           {/* Theme Toggle Button (Desktop) */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-[color:var(--navbar-text)]/10 border border-[color:var(--navbar-text)]/10 text-[color:var(--navbar-text)] hover:bg-[color:var(--navbar-text)]/20 transition-all shadow-lg backdrop-blur-sm"
+            className="p-1.5 rounded-full bg-[color:var(--navbar-text)]/10 border border-[color:var(--navbar-text)]/10 text-[color:var(--navbar-text)] hover:bg-[color:var(--navbar-text)]/20 transition-all shadow-lg backdrop-blur-sm"
             aria-label="Toggle theme"
           >
-            {theme === 'light' ? <MoonIcon className="h-5 w-5" /> : <SunIcon className="h-5 w-5" />}
+            {theme === 'light' ? <MoonIcon className="h-4 w-4" /> : <SunIcon className="h-4 w-4" />}
           </button>
           <Link 
             href="/contact" 
-            className="flex items-center justify-center py-2.5 bg-gradient-to-r from-[#0050C3] to-[#378ADD] text-white text-sm font-bold rounded-full shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all truncate px-5"
+            className="flex items-center justify-center py-1.5 bg-gradient-to-r from-[#0050C3] to-[#378ADD] text-white text-xs font-bold rounded-full shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all truncate px-4"
           >
             {t('Talk to us →', 'ទាក់ទងយើងខ្ញុំ →')}
           </Link>

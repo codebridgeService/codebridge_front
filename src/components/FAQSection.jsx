@@ -10,18 +10,18 @@ const FAQItem = ({ question, answer, isOpen, onClick, lang }) => {
   return (
     <motion.div 
       initial={false}
-      className={`group border-l-2 transition-all duration-300 ${isOpen ? 'border-[color:var(--color-primary)] bg-[color:var(--bg-secondary)]/50' : 'border-[color:var(--border-main)] hover:border-[color:var(--color-primary)]/40'}`}
+      className={`group border-l-2 transition-all duration-300 ${isOpen ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)]/5' : 'border-[color:var(--border-main)] hover:border-[color:var(--color-primary)]/40 hover:bg-[color:var(--text-main)]/[0.02]'}`}
     >
       <button
         onClick={onClick}
-        className="w-full px-6 sm:px-8 py-6 flex items-center justify-between text-left cursor-pointer"
+        className="w-full px-5 sm:px-6 py-4 flex items-center justify-between text-left cursor-pointer"
       >
-        <span className={`font-bold tracking-tight text-[color:var(--text-main)] group-hover:text-[color:var(--color-primary)] transition-colors duration-300 ${lang === 'kh' ? 'text-lg sm:text-xl font-battambang' : 'text-base sm:text-lg'}`}>
+        <span className={`font-bold tracking-tight text-[color:var(--text-main)] group-hover:text-[color:var(--color-primary)] transition-colors duration-300 ${lang === 'kh' ? 'text-base sm:text-lg font-battambang' : 'text-sm sm:text-base'}`}>
           {question}
         </span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0, scale: isOpen ? 1.05 : 1 }}
-          className={`shrink-0 ml-4 p-2 rounded-full transition-colors duration-300 ${isOpen ? 'bg-[color:var(--color-primary)] text-white shadow-md' : 'bg-[color:var(--bg-secondary)] text-[color:var(--text-muted)]'}`}
+          className={`shrink-0 ml-4 p-2 rounded-full transition-colors duration-300 ${isOpen ? 'bg-[color:var(--color-primary)] text-white shadow-md' : 'bg-transparent border border-[color:var(--border-main)] text-[color:var(--text-muted)]'}`}
         >
           <ChevronDownIcon className="w-4 h-4 stroke-[2.5]" />
         </motion.div>
@@ -35,8 +35,8 @@ const FAQItem = ({ question, answer, isOpen, onClick, lang }) => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="px-6 sm:px-8 pb-6 pt-1">
-              <p className={`text-[color:var(--text-muted)] leading-relaxed ${lang === 'kh' ? 'text-sm sm:text-base font-battambang' : 'text-sm sm:text-[15px]'}`}>
+            <div className="px-5 sm:px-6 pb-4 pt-0">
+              <p className={`text-[color:var(--text-muted)] leading-relaxed ${lang === 'kh' ? 'text-xs sm:text-sm font-battambang' : 'text-xs sm:text-sm'}`}>
                 {answer}
               </p>
             </div>
@@ -94,16 +94,16 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-      <div className="text-center mb-16">
+    <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 relative z-10">
+      <div className="text-center mb-8">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[color:var(--bg-main)]/80 backdrop-blur-sm border border-[color:var(--border-main)] shadow-sm mb-6"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-transparent border border-[color:var(--border-main)] shadow-sm mb-4"
         >
-          <QuestionMarkCircleIcon className="w-4 h-4 text-[color:var(--color-primary)]" />
-          <span className="text-xs font-bold text-[color:var(--text-main)] uppercase tracking-wider">
+          <QuestionMarkCircleIcon className="w-3.5 h-3.5 text-[color:var(--color-primary)]" />
+          <span className="text-[10px] sm:text-xs font-bold text-[color:var(--text-main)] uppercase tracking-wider">
             {t("Common Queries", "សំណួរទូទៅ")}
           </span>
         </motion.div>
@@ -112,26 +112,26 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-4xl lg:text-5xl font-black text-[color:var(--text-main)] tracking-tight mb-6"
+          className="text-2xl sm:text-3xl lg:text-4xl font-black text-[color:var(--text-main)] tracking-tight mb-3"
         >
           {t("Frequently Asked", "សំណួរដែលសួរ")} <span className="bg-clip-text text-transparent bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)]">{t("Questions", "ញឹកញាប់")}</span>
         </motion.h2>
         
-        <p className="text-[color:var(--text-muted)] text-base sm:text-lg max-w-xl mx-auto">
+        <p className="text-[color:var(--text-muted)] text-xs sm:text-sm max-w-lg mx-auto">
           {t("Everything you need to know about our services, timelines, and development process.", "អ្វីៗទាំងអស់ដែលអ្នកត្រូវដឹងអំពីសេវាកម្ម ពេលវេលា និងដំណើរការអភិវឌ្ឍន៍របស់យើង។")}
         </p>
 
         {/* Categories Pills */}
         {categories.length > 2 && (
-          <div className="flex items-center justify-center gap-2 mt-8 flex-wrap">
+          <div className="flex items-center justify-center gap-2 mt-5 flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
                   activeCategory === cat
                     ? 'bg-[color:var(--color-primary)] text-white shadow-md'
-                    : 'bg-[color:var(--bg-main)]/80 backdrop-blur-sm text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] border border-[color:var(--border-main)]'
+                    : 'bg-transparent text-[color:var(--text-muted)] hover:text-[color:var(--text-main)] border border-[color:var(--border-main)]'
                 }`}
               >
                 {cat}
@@ -141,7 +141,7 @@ export default function FAQSection() {
         )}
       </div>
 
-      <div className="rounded-3xl bg-[color:var(--bg-main)]/80 backdrop-blur-sm border border-[color:var(--border-main)] overflow-hidden shadow-sm divide-y divide-[color:var(--border-main)]">
+      <div className="rounded-2xl bg-transparent border border-[color:var(--border-main)] overflow-hidden divide-y divide-[color:var(--border-main)]">
         {filteredFaqs.map((faq, idx) => (
           <FAQItem
             key={faq.id || idx}

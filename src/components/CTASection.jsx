@@ -41,7 +41,7 @@ export default function CTASection() {
   const ctaBtnLink = settings?.ctaBtnLink || telegramUrl;
 
   return (
-    <section className="relative py-16 overflow-hidden z-10">
+    <section className="relative py-10 overflow-hidden z-10">
       <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ export default function CTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-5xl font-black text-[color:var(--text-main)] mb-4 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-black text-[color:var(--text-main)] mb-3 tracking-tight">
             {settings?.ctaTitle ? (
               ctaTitle
             ) : lang === 'kh' ? (
@@ -63,20 +63,20 @@ export default function CTASection() {
             )}
           </h2>
           
-          <p className="text-base sm:text-lg text-[color:var(--text-muted)] mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[color:var(--text-muted)] mb-6 max-w-xl mx-auto leading-relaxed">
             {ctaSubtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <motion.a
               href={ctaBtnLink.startsWith('http') ? ctaBtnLink : (ctaBtnLink.startsWith('/') ? ctaBtnLink : `https://${ctaBtnLink}`)}
               target={ctaBtnLink.startsWith('http') ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full sm:w-auto px-7 py-3 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-full shadow-lg shadow-blue-500/25 hover:shadow-xl hover:brightness-110 transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
+              className="flex items-center justify-center gap-2.5 w-full sm:w-auto px-6 py-2 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-full shadow-md shadow-blue-500/20 hover:shadow-lg hover:brightness-110 transition-all duration-300 transform hover:-translate-y-0.5 text-xs sm:text-sm"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              <FaTelegramPlane className="text-lg" />
+              <FaTelegramPlane className="text-base" />
               {ctaBtnText}
             </motion.a>
 
@@ -87,10 +87,10 @@ export default function CTASection() {
             >
               <Link
                 href="/packages"
-                className="flex items-center justify-center gap-2 w-full sm:w-auto px-7 py-3 border border-[color:var(--border-main)] bg-[color:var(--bg-main)]/80 backdrop-blur-sm text-[color:var(--text-main)] font-bold rounded-full hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--color-secondary)] transition-all duration-300 text-sm shadow-sm"
+                className="flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-2 border border-[color:var(--border-main)] bg-[color:var(--bg-main)]/80 backdrop-blur-sm text-[color:var(--text-main)] font-bold rounded-full hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--color-secondary)] transition-all duration-300 text-xs sm:text-sm shadow-sm"
               >
                 {t("View Packages", "មើលកញ្ចប់សេវាកម្ម")}
-                <ArrowRightIcon className="h-4 w-4 stroke-[2.5]" />
+                <ArrowRightIcon className="h-3.5 w-3.5 stroke-[2.5]" />
               </Link>
             </motion.div>
           </div>

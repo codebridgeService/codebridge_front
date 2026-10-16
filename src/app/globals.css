@@ -1,5 +1,5 @@
 /* Modern High-End Typography Imports */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Battambang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Battambang:wght@100;300;400;700;900&display=swap');
 
 @import "tailwindcss";
 
@@ -7,7 +7,7 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-jakarta: 'Plus Jakarta Sans', sans-serif;
-  --font-khmer: 'Kantumruy Pro', 'Battambang', sans-serif;
+  --font-khmer: 'Battambang', sans-serif;
 }
 
 :root {
@@ -15,11 +15,11 @@
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-inter: 'Inter', sans-serif;
   --font-jakarta: 'Plus Jakarta Sans', sans-serif;
-  --font-khmer: 'Kantumruy Pro', sans-serif;
+  --font-khmer: 'Battambang', sans-serif;
   
   /* Fallbacks for existing class names */
   --font-poppins: 'Inter', 'Poppins', sans-serif;
-  --font-battambang: 'Kantumruy Pro', 'Battambang', sans-serif;
+  --font-battambang: 'Battambang', sans-serif;
 
   /* Brand Palette (Aligned with CodeBridges Logo) */
   --color-primary: #0050C3; /* Logo Sapphire Blue */
@@ -187,4 +187,24 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-tech-float-2 {
   animation: techFloat2 22s ease-in-out infinite;
+}
+
+/* Seamless Infinite Tech Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

@@ -13,15 +13,15 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen relative z-10">
       {/* Hero Header */}
-      <section className="relative pt-32 pb-12 overflow-hidden">
+      <section className="relative pt-12 pb-6 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="max-w-4xl text-center mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-[color:var(--bg-main)]/80 backdrop-blur-sm text-[color:var(--text-main)] border border-[color:var(--border-main)] rounded-full text-xs font-bold uppercase tracking-wider mb-8 shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1 bg-transparent text-[color:var(--text-main)] border border-[color:var(--border-main)] rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 shadow-sm"
             >
-              <SparklesIcon className="w-4 h-4 text-amber-500" />
+              <SparklesIcon className="w-3.5 h-3.5 text-amber-500" />
               {t("Help Center", "មជ្ឈមណ្ឌលជំនួយ")}
             </motion.div>
             
@@ -29,7 +29,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl font-black text-[color:var(--text-main)] mb-6 tracking-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl font-black text-[color:var(--text-main)] mb-3 tracking-tight"
             >
               {t("How can we", "តើយើងអាច")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)]">{t("Help you?", "ជួយអ្នកបាន?")}</span>
             </motion.h1>
@@ -38,7 +38,7 @@ export default function FAQPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-base sm:text-lg text-[color:var(--text-muted)] max-w-2xl mx-auto leading-relaxed"
+              className="text-xs sm:text-sm text-[color:var(--text-muted)] max-w-xl mx-auto leading-relaxed"
             >
               {t(
                 "Everything you need to know about our development process, security standards, and technical ecosystem.",

@@ -14,6 +14,7 @@ import CTASection from '@/components/CTASection';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import { FaTelegramPlane } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 import { packageService } from '@/store/packageService';
 import { projectService } from '@/store/projectService';
@@ -22,6 +23,7 @@ import { useState, useEffect } from "react";
 import ServiceList from '@/components/ServiceList';
 import OrderModal from '@/components/OrderModal';
 import { getEncryptedHref } from '@/lib/routeCipher';
+import TechMarquee from '@/components/TechMarquee';
 
 // Motion variants
 const sectionVariants = {
@@ -107,9 +109,14 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="pt-20">
+      <main className="pt-14 sm:pt-16">
         {/* Hero Section */}
         {settings?.showHero !== false && <Hero />}
+
+        {/* Tech Stack Marquee Section */}
+        <div className="my-6 sm:my-8">
+          <TechMarquee />
+        </div>
 
         {/* Services Section */}
         {settings?.showServices !== false && (
@@ -120,20 +127,20 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <h2 className="text-4xl font-extrabold text-[color:var(--text-main)] text-center mb-12 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-black text-[color:var(--text-main)] text-center mb-6 tracking-tight">
               {t("Our", "ជំនាញ")} <span className="text-gradient-brand">{t("Expertise", "របស់យើង")}</span>
             </h2>
-            <div className="mt-6">
+            <div className="mt-4">
               <ServiceList limit={3} />
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-8">
               <MotionLink
                 href="/services"
-                className="inline-flex items-center justify-center w-56 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-xs sm:text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("View All Services", "មើលសេវាកម្មទាំងអស់")} <ArrowRightIcon className="ml-3 h-5 w-5" />
+                {t("View All Services", "មើលសេវាកម្មទាំងអស់")} <ArrowRightIcon className="ml-2 h-4 w-4" />
               </MotionLink>
             </div>
           </motion.section>
@@ -142,28 +149,28 @@ export default function Home() {
         {/* Packages Section */}
         {settings?.showPackages !== false && (
           <motion.section
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-extrabold text-[color:var(--text-main)] mb-4 tracking-tight">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl sm:text-3xl font-black text-[color:var(--text-main)] mb-2 tracking-tight">
                 {t("Service", "កញ្ចប់")} <span className="text-gradient-brand">{t("Packages", "សេវាកម្ម")}</span>
               </h2>
-              <p className="text-lg text-[color:var(--color-text-muted-light)] max-w-2xl mx-auto">
+              <p className="text-xs sm:text-sm text-[color:var(--text-muted)] max-w-xl mx-auto leading-relaxed font-medium">
                 {t(
-                  "Transparent pricing tailored to your scale. Choose the right path for your digital journey.",
-                  "តម្លៃច្បាស់លាស់ស្របតាមទំហំអាជីវកម្មរបស់អ្នក។ ជ្រើសរើសផ្លូវត្រឹមត្រូវសម្រាប់ដំណើរឌីជីថលរបស់អ្នក។"
+                  "Scalable architecture blueprints tailored to your business scale. Every project has unique requirements—we consult directly to craft your custom solution.",
+                  "ប្លង់ស្ថាបត្យកម្មប្រព័ន្ធដែលអាចពង្រីកបានស្របតាមទំហំអាជីវកម្មរបស់អ្នក។ គម្រោងនីមួយៗមានតម្រូវការជាក់ស្ដែងរៀងៗខ្លួន—យើងពិគ្រោះយោបល់ផ្ទាល់ដើម្បីបង្កើតដំណោះស្រាយស័ក្តិសមបំផុត។"
                 )}
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch">
               {loadingPackages ? (
                 Array(3).fill(null).map((_, i) => (
-                  <div key={`sk-pkg-${i}`} className="w-full h-[500px] bg-gray-100 rounded-[2.5rem] animate-pulse relative overflow-hidden">
-                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                  <div key={`sk-pkg-${i}`} className="w-full h-[440px] bg-[color:var(--bg-main)]/40 border border-[color:var(--border-main)]/60 rounded-2xl animate-pulse relative overflow-hidden">
+                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-[color:var(--text-main)]/5 to-transparent" />
                   </div>
                 ))
               ) : packages.slice(0, 3).map((pkg) => (
@@ -176,19 +183,27 @@ export default function Home() {
                     description: t(pkg.description, pkg.kh_description) || pkg.description,
                     features: lang === 'kh' && pkg.kh_features && pkg.kh_features.length > 0 ? pkg.kh_features : pkg.features
                   }} 
-                  onOrder={(pkgToOrder) => setSelectedOrderPkg(pkgToOrder)}
                 />
               ))}
             </div>
 
-            <div className="text-center mt-12 pb-10">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-8 pb-4">
+              <a
+                href={settings?.telegramUrl || "https://t.me/codebridgee"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-2 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-xs sm:text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                <FaTelegramPlane className="w-3.5 h-3.5" />
+                {t("Discuss With Engineers", "ពិភាក្សាផ្ទាល់ជាមួយក្រុមការងារ")}
+              </a>
               <MotionLink
                 href="/packages"
-                className="inline-flex items-center justify-center w-56 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center px-6 py-2 border border-[color:var(--border-main)]/80 bg-transparent text-[color:var(--text-main)] font-bold text-xs sm:text-sm rounded-full shadow-xs hover:border-[color:var(--color-primary)] transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("View All Packages", "មើលកញ្ចប់ទាំងអស់")} <ArrowRightIcon className="ml-3 h-5 w-5" />
+                {t("View All Blueprints", "មើលកញ្ចប់ទាំងអស់")} <ArrowRightIcon className="ml-2 h-4 w-4" />
               </MotionLink>
             </div>
           </motion.section>
@@ -197,21 +212,21 @@ export default function Home() {
         {/* Projects Section */}
         {settings?.showProjects !== false && (
           <motion.section
-            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 "
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-extrabold text-[color:var(--text-main)] mb-4 tracking-tight">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl sm:text-3xl font-black text-[color:var(--text-main)] mb-2 tracking-tight">
                 {t("Recent", "ស្នាដៃ")} <span className="text-gradient-brand">{t("Projects", "ថ្មីៗ")}</span>
               </h2>
-              <p className="text-gray-500 max-w-2xl mx-auto">
+              <p className="text-xs sm:text-sm text-gray-500 max-w-xl mx-auto">
                 {t("Explore our latest case studies and successful client deliverables.", "ស្វែងយល់ពីស្នាដៃថ្មីៗ និងលទ្ធផលដែលទទួលបានជោគជ័យរបស់យើង។")}
               </p>
             </div>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {loadingProjects ? (
                 Array(3).fill(null).map((_, i) => (
                   <div key={`sk-proj-${i}`} className="w-full h-80 bg-gray-100 rounded-3xl animate-pulse relative overflow-hidden" />
@@ -222,14 +237,14 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-8">
               <MotionLink
                 href={getEncryptedHref('/portfolio')}
-                className="inline-flex items-center justify-center w-56 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-xs sm:text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {t("See All Work", "មើលការងារទាំងអស់")} <ArrowRightIcon className="ml-3 h-5 w-5" />
+                {t("See All Work", "មើលការងារទាំងអស់")} <ArrowRightIcon className="ml-2 h-4 w-4" />
               </MotionLink>
             </div>
           </motion.section>
@@ -243,7 +258,7 @@ export default function Home() {
 
         {/* Team Section */}
         {settings?.showTeam !== false && (
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             <TeamSection />
           </section>
         )}

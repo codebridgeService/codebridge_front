@@ -19,7 +19,8 @@ import {
   XMarkIcon,
   ServerIcon,
   FireIcon,
-  BoltIcon
+  BoltIcon,
+  UserIcon
 } from '@heroicons/react/24/outline';
 import Toast from '../components/Toast';
 
@@ -503,7 +504,17 @@ export default function SecurityManagementPage() {
                       {/* Blocked By */}
                       <td className="py-4 px-6">
                         <span className="text-xs font-semibold text-gray-500 block truncate max-w-[140px]">
-                          {item.blockedBy === 'SYSTEM_ATTACK_SHIELD' ? '⚡ Attack Shield' : `👤 ${item.blockedBy}`}
+                          {item.blockedBy === 'SYSTEM_ATTACK_SHIELD' ? (
+                            <span className="inline-flex items-center gap-1 text-amber-600 font-bold">
+                              <BoltIcon className="w-3.5 h-3.5" />
+                              Attack Shield
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center gap-1 text-slate-700">
+                              <UserIcon className="w-3.5 h-3.5 text-slate-400" />
+                              {item.blockedBy}
+                            </span>
+                          )}
                         </span>
                       </td>
 
@@ -598,7 +609,7 @@ export default function SecurityManagementPage() {
                       { minutes: 1440, label: '24 Hours' },
                       { minutes: 10080, label: '7 Days' },
                       { minutes: 43200, label: '30 Days' },
-                      { permanent: true, label: '♾️ Permanent' },
+                      { permanent: true, label: 'Permanent' },
                     ].map((d, i) => {
                       const isSelected = d.permanent ? blockForm.isPermanent : (!blockForm.isPermanent && blockForm.durationMinutes === d.minutes);
                       return (
