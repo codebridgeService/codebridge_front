@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowRightIcon, WrenchScrewdriverIcon } from '@heroicons/react/24/outline';
 import { useLanguage } from '@/context/LanguageContext';
 import { siteSettingService } from '@/store/siteSettingService';
+import { getEncryptedHref } from '@/lib/routeCipher';
 
 const MotionLink = motion.create(Link);
 
@@ -102,7 +103,7 @@ export default function Hero() {
           variants={itemVariants}
         >
           <MotionLink 
-            href={ctaBtnLink} 
+            href={getEncryptedHref(ctaBtnLink)} 
             className="inline-flex items-center justify-center px-6 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-full shadow-lg shadow-blue-500/25 hover:shadow-xl hover:brightness-110 transition-all duration-300 transform hover:-translate-y-0.5 text-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -111,7 +112,7 @@ export default function Hero() {
           </MotionLink>
 
           <MotionLink 
-            href="/portfolio" 
+            href={getEncryptedHref('/portfolio')} 
             className="inline-flex items-center justify-center px-6 py-2.5 border border-[color:var(--border-main)] bg-[color:var(--bg-main)]/80 backdrop-blur-sm text-[color:var(--text-main)] font-bold rounded-full hover:bg-[color:var(--bg-secondary)] hover:border-[color:var(--color-secondary)] transition-all duration-300 transform hover:-translate-y-0.5 text-sm shadow-sm"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}

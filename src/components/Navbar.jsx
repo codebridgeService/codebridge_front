@@ -13,6 +13,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { authService } from '@/store/authService';
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
+import { getEncryptedHref, decryptRoute } from '@/lib/routeCipher';
 
 const navItems = [
   { name: 'Home', kh: 'ទំព័រដើម', href: '/' },
@@ -30,6 +31,9 @@ export default function Navbar() {
   const { lang, setLang } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
+  const resolvedPathname = pathname?.startsWith('/e/') 
+    ? decryptRoute(pathname.slice(3)) 
+    : pathname;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -75,11 +79,12 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-4">
           <div className="flex items-center gap-1">
             {navItems.map((item) => {
-              const isActive = pathname === item.href || (pathname?.startsWith(item.href) && item.href !== '/');
+              const isActive = resolvedPathname === item.href || (resolvedPathname?.startsWith(item.href) && item.href !== '/');
+              const targetHref = getEncryptedHref(item.href);
               return (
                 <Link 
                   key={item.name} 
-                  href={item.href}
+                  href={targetHref}
                   className={`px-4 py-2 text-sm font-semibold rounded-full transition-all relative group ${lang === 'kh' ? 'text-base' : ''} ${
                     isActive 
                       ? 'text-[color:var(--navbar-text)] bg-[color:var(--navbar-text)]/10'
@@ -193,11 +198,12 @@ export default function Navbar() {
           >
             <div className="flex flex-col p-5 gap-1">
               {navItems.map((item) => {
-                const isActive = pathname === item.href || (pathname?.startsWith(item.href) && item.href !== '/');
+                const isActive = resolvedPathname === item.href || (resolvedPathname?.startsWith(item.href) && item.href !== '/');
+                const targetHref = getEncryptedHref(item.href);
                 return (
                   <Link
                     key={item.name}
-                    href={item.href}
+                    href={targetHref}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between py-4 px-4 rounded-xl transition-colors group ${lang === 'kh' ? 'text-xl font-bold' : 'text-lg font-bold'} ${
                       isActive 
@@ -224,7 +230,7 @@ export default function Navbar() {
               )}
               <div className="mt-2 px-2 pb-2">
                 <Link
-                  href="/contact"
+                  href={getEncryptedHref('/contact')}
                   onClick={() => setIsOpen(false)}
                   className={`w-full py-4 bg-gradient-to-r from-[#0050C3] to-[#378ADD] text-white text-center font-black rounded-2xl shadow-xl shadow-blue-900/10 flex items-center justify-center transition-transform active:scale-[0.98] truncate px-4 ${lang === 'kh' ? 'text-base' : 'text-sm uppercase tracking-widest'}`}
                 >

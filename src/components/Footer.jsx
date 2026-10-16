@@ -8,6 +8,7 @@ import { FaFacebookF, FaTiktok, FaTelegramPlane, FaArrowRight, FaInstagram } fro
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { siteSettingService } from '@/store/siteSettingService';
+import { getEncryptedHref } from '@/lib/routeCipher';
 
 export default function Footer() {
   const [year, setYear] = useState('');
@@ -103,7 +104,7 @@ export default function Footer() {
             <ul className={`flex flex-col gap-2 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-base' : 'text-sm'}`}>
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
+                  <Link href={getEncryptedHref(link.href)} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
                     <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-2" /></span>
                     {link.name}
                   </Link>
@@ -119,7 +120,7 @@ export default function Footer() {
             <ul className={`flex flex-col gap-2 text-[color:var(--text-muted)] ${lang === 'kh' ? 'text-base' : 'text-sm'}`}>
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
+                  <Link href={getEncryptedHref(link.href)} className="hover:text-[color:var(--color-primary)] transition-colors flex items-center group">
                     <span className="w-0 group-hover:w-3 overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100"><FaArrowRight className="h-2 w-2 mr-2" /></span>
                     {link.name}
                   </Link>

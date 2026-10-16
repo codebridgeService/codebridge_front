@@ -21,6 +21,7 @@ import { siteSettingService } from '@/store/siteSettingService';
 import { useState, useEffect } from "react";
 import ServiceList from '@/components/ServiceList';
 import OrderModal from '@/components/OrderModal';
+import { getEncryptedHref } from '@/lib/routeCipher';
 
 // Motion variants
 const sectionVariants = {
@@ -223,7 +224,7 @@ export default function Home() {
             </div>
             <div className="text-center mt-12">
               <MotionLink
-                href="/portfolio"
+                href={getEncryptedHref('/portfolio')}
                 className="inline-flex items-center justify-center w-56 py-2.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold text-sm rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

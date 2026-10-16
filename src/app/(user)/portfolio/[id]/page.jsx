@@ -7,6 +7,7 @@ import { ArrowLeftIcon, ArrowTopRightOnSquareIcon, TagIcon } from '@heroicons/re
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { projectService } from '@/store/projectService';
+import { getEncryptedHref } from '@/lib/routeCipher';
 import Link from 'next/link';
 
 export default function ProjectDetailPage() {
@@ -47,7 +48,7 @@ export default function ProjectDetailPage() {
         <h1 className="text-4xl font-black text-[color:var(--text-main)] mb-4 uppercase tracking-tighter">Project Not Found</h1>
         <p className="text-[color:var(--text-muted)] mb-8">{error || "The project you're looking for doesn't exist or has been removed."}</p>
         <button 
-          onClick={() => router.push('/portfolio')}
+          onClick={() => router.push(getEncryptedHref('/portfolio'))}
           className="px-8 py-4 bg-[color:var(--text-main)] text-[color:var(--bg-main)] rounded-full font-black uppercase tracking-widest text-xs hover:bg-[color:var(--color-primary)] hover:text-white transition-all shadow-xl"
         >
           Back to Portfolio

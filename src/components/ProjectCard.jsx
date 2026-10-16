@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaUsers, FaTools } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { getEncryptedHref } from '@/lib/routeCipher';
 
 export default function ProjectCard({ project }) {
   const router = useRouter();
 
   return (
     <motion.div
-      onClick={() => router.push(`/portfolio/${project.encryptedId || project.id}`)}
+      onClick={() => router.push(getEncryptedHref(`/portfolio/${project.encryptedId || project.id}`))}
       className="bg-[color:var(--bg-secondary)] rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 border border-[color:var(--border-main)] flex flex-col h-full group cursor-pointer"
       whileHover={{ y: -6 }}
     >
