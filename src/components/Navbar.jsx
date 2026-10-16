@@ -146,7 +146,7 @@ export default function Navbar() {
             href="/contact" 
             className="flex items-center justify-center py-2.5 bg-gradient-to-r from-[#0050C3] to-[#378ADD] text-white text-sm font-bold rounded-full shadow-lg shadow-blue-500/20 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all truncate px-5"
           >
-            {t('Talk to us →', 'សុំការដកស្រង់តម្លៃ →')}
+            {t('Talk to us →', 'ទាក់ទងយើងខ្ញុំ →')}
           </Link>
         </div>
 

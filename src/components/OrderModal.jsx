@@ -7,24 +7,52 @@ import { XMarkIcon, CheckCircleIcon, ArrowRightIcon } from '@heroicons/react/24/
 export default function OrderModal({ pkg, onClose }) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({ name: '', email: '', details: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   if (!pkg) return null;
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step === 1 && !formData.name) return;
     if (step === 2 && !formData.email) return;
     
     if (step === 2) {
-      // Simulate form submission
-      console.log('Order submitted:', { package: pkg.name, ...formData });
-      setStep(3);
+      setIsSubmitting(true);
+      setSubmitError(null);
+      try {
+        const res = await fetch('/api/project-requests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            packageId: pkg.id,
+            websiteGoals: formData.details || `Order for package: ${pkg.name}`,
+          }),
+        });
+
+        if (res.ok) {
+          setStep(3);
+        } else {
+          const data = await res.json().catch(() => ({}));
+          setSubmitError(data.message || 'Failed to submit order request. Please try again.');
+        }
+      } catch (err) {
+        console.error('Failed to submit order:', err);
+        setSubmitError('Connection error. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       setStep(step + 1);
     }
   };
 
   const handleBack = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) {
+      setSubmitError(null);
+      setStep(step - 1);
+    }
   };
 
   return (
@@ -134,19 +162,26 @@ export default function OrderModal({ pkg, onClose }) {
                     />
                   </div>
 
+                  {submitError && (
+                    <div className="p-3 text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-200 rounded-xl text-center">
+                      {submitError}
+                    </div>
+                  )}
+
                   <div className="flex gap-3 mt-2">
                     <button 
                       onClick={handleBack}
-                      className="px-5 py-3.5 rounded-2xl font-bold text-[color:var(--text-muted)] hover:bg-[color:var(--bg-main)] transition-all text-sm"
+                      disabled={isSubmitting}
+                      className="px-5 py-3.5 rounded-2xl font-bold text-[color:var(--text-muted)] hover:bg-[color:var(--bg-main)] transition-all text-sm disabled:opacity-50"
                     >
                       Back
                     </button>
                     <button 
                       onClick={handleNext}
-                      disabled={!formData.email}
+                      disabled={!formData.email || isSubmitting}
                       className="flex-1 py-3.5 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] text-white font-bold rounded-2xl shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                      Complete Request <CheckCircleIcon className="w-5 h-5" />
+                      {isSubmitting ? 'Submitting...' : 'Complete Request'} <CheckCircleIcon className="w-5 h-5" />
                     </button>
                   </div>
                 </motion.div>

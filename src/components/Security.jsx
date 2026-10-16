@@ -43,42 +43,25 @@ export default function Security() {
       .finally(() => setLoading(false));
   }, []);
 
-  const defaultFeatures = [
-    {
-      title: "End-to-End Encryption",
-      titleKh: "ការបំប្លែងកូដពីចុងម្ខាងទៅចុងម្ខាង",
-      description: "Your data is secured using industry-standard AES-256 encryption protocols during transit and at rest.",
-      descriptionKh: "ទិន្នន័យរបស់អ្នកត្រូវបានធានាសុវត្ថិភាពដោយប្រើពិធីការបំប្លែងកូដ AES-256 ស្តង់ដារឧស្សាហកម្ម។",
-      icon: "LockClosedIcon",
-      color: "#3B82F6",
-    },
-    {
-      title: "Secure Cloud Infrastructure",
-      titleKh: "ហេដ្ឋារចនាសម្ព័ន្ធក្លោតប្រកបដោយសុវត្ថិភាព",
-      description: "Leveraging globally distributed, enterprise-grade cloud servers with 99.9% uptime and DDoS protection.",
-      descriptionKh: "ប្រើប្រាស់ម៉ាស៊ីនមេក្លោតកម្រិតសហគ្រាស ជាមួយនឹងពេលវេលាដំណើរការ 99.9% និងការការពារ DDoS ។",
-      icon: "CloudIcon",
-      color: "#6366F1",
-    },
-    {
-      title: "Privacy by Design",
-      titleKh: "ឯកជនភាពតាមរយៈការរចនា",
-      description: "Built-in compliance with data protection regulations ensuring your user information remains private.",
-      descriptionKh: "ការអនុលោមតាមបទប្បញ្ញត្តិការពារទិន្នន័យដែលធានាថាព័ត៌មានអ្នកប្រើប្រាស់នៅតែជាឯកជន។",
-      icon: "ShieldCheckIcon",
-      color: "#10B981",
-    },
-    {
-      title: "Continuous Monitoring",
-      titleKh: "ការត្រួតពិនិត្យជាបន្តបន្ទាប់",
-      description: "24/7 security auditing and automated patch management to stay ahead of emerging threats.",
-      descriptionKh: "ការត្រួតពិនិត្យសុវត្ថិភាព 24/7 និងការគ្រប់គ្រងបំណះដោយស្វ័យប្រវត្តិ ដើម្បីការពារការគំរាមកំហែង។",
-      icon: "FingerPrintIcon",
-      color: "#8B5CF6",
-    }
-  ];
+  if (loading) {
+    return (
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 mb-10 overflow-hidden relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {Array(4).fill(null).map((_, i) => (
+            <div key={i} className="p-8 rounded-3xl bg-[color:var(--bg-main)]/80 border border-[color:var(--border-main)] animate-pulse flex flex-col items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-[color:var(--text-main)]/5" />
+              <div className="w-3/4 h-4 rounded bg-[color:var(--text-main)]/5" />
+              <div className="w-full h-12 rounded bg-[color:var(--text-main)]/5" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
-  const displayFeatures = features.length > 0 ? features : defaultFeatures;
+  if (features.length === 0) {
+    return null;
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -141,7 +124,7 @@ export default function Security() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {displayFeatures.map((feature, i) => {
+          {features.map((feature, i) => {
             const IconComp = ICON_MAP[feature.icon] || ShieldCheckIcon;
             const accentColor = feature.color || '#3B82F6';
             return (

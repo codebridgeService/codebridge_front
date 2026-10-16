@@ -43,13 +43,27 @@ export default function HowWeWork() {
     }
   };
 
-  const displaySteps = steps.length > 0 ? steps : [
-    { stepNumber: "01", title: "Discovery", titleKh: "ការស្វែងយល់", description: "We listen to your needs, understand your goals and define the project scope.", descriptionKh: "យើងស្តាប់តម្រូវការរបស់អ្នក យល់ពីគោលដៅរបស់អ្នក និងកំណត់វិសាលភាពនៃគម្រោង។" },
-    { stepNumber: "02", title: "Design", titleKh: "ការរចនា", description: "Our UI/UX team creates wireframes and prototypes for your approval.", descriptionKh: "ក្រុម UI/UX របស់យើងបង្កើតទម្រង់ដើម និងគំរូសម្រាប់ការយល់ព្រមរបស់អ្នក។" },
-    { stepNumber: "03", title: "Develop", titleKh: "ការអភិវឌ្ឍ", description: "Our developers build your product with clean, scalable code.", descriptionKh: "អ្នកអភិវឌ្ឍន៍របស់យើងបង្កើតផលិតផលរបស់អ្នកជាមួយនឹងកូដស្អាត និងអាចពង្រីកបាន។" },
-    { stepNumber: "04", title: "Test", titleKh: "ការសាកល្បង", description: "We thoroughly test across devices and fix all issues before launch.", descriptionKh: "យើងធ្វើការសាកល្បងយ៉ាងល្អិតល្អន់លើគ្រប់ឧបករណ៍ និងជួសជុលបញ្ហាទាំងអស់មុនពេលដាក់ឱ្យដំណើរការ។" },
-    { stepNumber: "05", title: "Launch", titleKh: "ការដាក់ឱ្យដំណើរការ", description: "We deploy your product and ensure a smooth, successful launch.", descriptionKh: "យើងដាក់ពង្រាយផលិតផលរបស់អ្នក និងធានានូវការដាក់ឱ្យដំណើរការដោយរលូន និងជោគជ័យ។" },
-  ];
+  if (loading) {
+    return (
+      <section className="relative mt-12 py-20 z-10">
+        <div className="max-w-6xl mx-auto px-4 z-10 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
+            {Array(5).fill(null).map((_, i) => (
+              <div key={i} className="flex flex-col items-center gap-4 animate-pulse">
+                <div className="w-24 h-24 rounded-full bg-[color:var(--text-main)]/5" />
+                <div className="w-24 h-4 bg-[color:var(--text-main)]/5 rounded-full" />
+                <div className="w-32 h-12 bg-[color:var(--text-main)]/5 rounded-xl" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (steps.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative mt-12 py-20 z-10">
@@ -76,14 +90,14 @@ export default function HowWeWork() {
           <div className="hidden lg:block absolute top-[3rem] left-[10%] right-[5%] h-1 bg-[color:var(--color-secondary)]/20 z-0" />
 
           <motion.div 
-            className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${Math.min(5, displaySteps.length)} gap-12 lg:gap-4 relative z-10`}
+            className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-${Math.min(5, steps.length)} gap-12 lg:gap-4 relative z-10`}
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
           >
-            {displaySteps.map((step, idx) => (
-              <motion.div key={step.id || idx} variants={itemVariants} className="flex flex-col items-center text-center relative group">
+            {steps.map((step) => (
+              <motion.div key={step.id} variants={itemVariants} className="flex flex-col items-center text-center relative group">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[color:var(--color-primary)] to-[color:var(--color-secondary)] flex justify-center items-center text-white text-2xl font-black mb-8 shadow-lg shadow-blue-500/20 transition-transform duration-300 group-hover:scale-105 z-10 mx-auto relative cursor-default">
                   <div className="absolute inset-2 border-[1.5px] border-white/20 rounded-full" />
                   {step.stepNumber}
