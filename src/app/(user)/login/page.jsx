@@ -126,7 +126,7 @@ export default function LoginPage() {
                 }}
                 onBlur={handleEmailBlur}
                 required
-                placeholder={t('admin@codebridge.com', 'admin@codebridge.com')}
+                placeholder={t('codebridge2026@gmail.com', 'codebridge2026@gmail.com')}
                 className={`w-full px-5 py-3 bg-[color:var(--bg-main)]/50 border ${errors.email ? 'border-red-400 focus:ring-red-400/10' : 'border-[color:var(--border-main)] focus:ring-[color:var(--color-primary)]/10 focus:border-[color:var(--color-primary)]'} rounded-2xl focus:outline-none focus:ring-4 transition-all font-medium text-[color:var(--text-main)] placeholder-[color:var(--text-muted)]/50`}
               />
               {errors.email && (
